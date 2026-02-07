@@ -1,5 +1,5 @@
+streamlit
 flask
 flask-socketio
 eventlet
 plotly
-gunicorn
