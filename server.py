@@ -387,10 +387,13 @@ def socket_return_home():
 predicted_path = generate_predicted_path()
 print(f"Generated predicted path with {len(predicted_path)} points")
 
-# Start drone simulation
-threading.Thread(target=simulate_drone_movement, daemon=True).start()
+# Start drone simulation (use SocketIO background task)
+socketio.start_background_task(simulate_drone_movement)
 
 if __name__ == '__main__':
     print("Server Starting...")
+    # Ensure background simulate_drone_movement is running when server starts
+    socketio.start_background_task(simulate_drone_movement)
+
     port = int(os.environ.get("PORT", 5050))
     socketio.run(app, host="0.0.0.0", port=port)

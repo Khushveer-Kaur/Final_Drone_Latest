@@ -1,22 +1,6 @@
 services:
   - type: web
-    name: drone-backend
+    name: drone-mission-control
     env: python
-    plan: free
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python server.py"
-    envVars:
-      - key: PYTHONUNBUFFERED
-        value: "1"
-
-  - type: web
-    name: drone-frontend
-    env: python
-    plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "streamlit run app.py --server.port=$PORT --server.address=0.0.0.0"
-    envVars:
-      - key: BACKEND_URL
-        value: "https://drone-backend.onrender.com"
-      - key: PYTHONUNBUFFERED
-        value: "1"
