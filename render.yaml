@@ -1,20 +1,20 @@
 services:
   - type: web
     name: drone-backend
-    runtime: python3
-    buildCommand: pip install -r requirements.txt
-    startCommand: python server.py
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python server.py"
     envVars:
       - key: PYTHONUNBUFFERED
-        value: 1
+        value: "1"
 
   - type: web
     name: drone-frontend
-    runtime: python3
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "streamlit run app.py --server.port=$PORT --server.address=0.0.0.0"
     envVars:
       - key: BACKEND_URL
-        value: https://drone-backend.onrender.com
+        value: "https://drone-backend.onrender.com"
       - key: PYTHONUNBUFFERED
         value: "1"
